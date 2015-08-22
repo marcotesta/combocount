@@ -1,28 +1,24 @@
 package it.mondogrua.combocount.swing_count_view;
 
-import it.mondogrua.utils.ComboObservable;
-import it.mondogrua.utils.JavaUtilObserver;
-import it.mondogrua.utils.JavaUtilObserverObserver;
+import it.mondogrua.utils.JavaUtilObservable;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Observable;
 
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
-public class DisplayBox extends JLabel implements JavaUtilObserverObserver {
+public class DisplayBox extends JLabel implements java.util.Observer {
 
-    private final JavaUtilObserver observer;
-
-    public DisplayBox(ComboObservable count, String action) {
-        this.observer = new JavaUtilObserver(this);
-        count.addObserver(observer);
+    public DisplayBox(JavaUtilObservable count, String action) {
+        count.addObserver(this);
         update(count, action);
     }
 
-    @Override  // JavaUtilObserverObserver
-    public void update(ComboObservable observable, Object action) {
+    @Override  // java.util.Observer
+    public void update(Observable observable, Object action) {
         setContent(getContentFrom(observable, (String) action));
     }
 
@@ -57,5 +53,6 @@ public class DisplayBox extends JLabel implements JavaUtilObserverObserver {
         }
         return "";
     }
+
 
 }

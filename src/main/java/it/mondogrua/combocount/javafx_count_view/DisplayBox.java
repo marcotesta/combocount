@@ -2,16 +2,16 @@ package it.mondogrua.combocount.javafx_count_view;
 
 
 import it.mondogrua.utils.ComboObservable;
-import it.mondogrua.utils.PropertyObserver;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Label;
 
 public class DisplayBox extends Label  {
 
-    private final PropertyObserver observer;
+    private final SimpleStringProperty observer;
 
     public DisplayBox(ComboObservable count) {
-        this.observer = new PropertyObserver();
+        this.observer = new SimpleStringProperty();
         textProperty().bind(Bindings.convert(observer));
         count.addObserver(observer);
     }

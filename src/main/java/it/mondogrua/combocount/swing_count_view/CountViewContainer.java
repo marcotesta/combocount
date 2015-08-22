@@ -65,7 +65,7 @@ public class CountViewContainer extends JPanel {
     }
 
     private DisplayBox makeDisplayBoxOn(final Count count, String action) {
-        return new DisplayBox(count, action);
+        return new DisplayBox(count.asJavaUtilObservable(), action);
     }
 
     private GridBagConstraints makeConstraintFrame(int x, int y) {
