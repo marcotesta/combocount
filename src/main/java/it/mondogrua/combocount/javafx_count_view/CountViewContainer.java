@@ -24,7 +24,14 @@ public class CountViewContainer extends GridPane {
         stage.setScene(scene);
         stage.setTitle(title);
     }
-
+    
+    public void altOpenOn(final Count count, String title, Stage stage) {
+        buildViewsOn(count);
+        Scene scene = new Scene(this, 300, 150);
+        stage.setScene(scene);
+        stage.setTitle(title);
+    }
+    
     private void buildViewsOn(final Count count) {
         addDisplayBoxOn(count);
         addIncrementButtonOn(count);
@@ -32,8 +39,21 @@ public class CountViewContainer extends GridPane {
         addResetButtonOn(count);
     }
 
+    private void altBuildViewsOn(final Count count) {
+        addDisplayBoxOn(count);
+        addIncrementButtonOn(count);
+        addDecrementButtonOn(count);
+        addResetButtonOn(count);
+    }
+
     private void addDisplayBoxOn(final Count count) {
-        DisplayBox displayBox = makeDisplayBoxOn(count);
+    	DisplayBox displayBox = makeDisplayBoxOn(count);
+        ConstraintFrame constraintFrame = new ConstraintFrame(1, 1);
+        add(displayBox, constraintFrame);
+    }
+
+    private void addDisplayBoxChangeListenerOn(final Count count) {
+    	DisplayBoxChangeListener displayBox = makeDisplayBoxChangeListenerOn(count);
         ConstraintFrame constraintFrame = new ConstraintFrame(1, 1);
         add(displayBox, constraintFrame);
     }
@@ -62,6 +82,10 @@ public class CountViewContainer extends GridPane {
 
     private DisplayBox makeDisplayBoxOn(final Count count) {
         return new DisplayBox(count);
+    }
+
+    private DisplayBoxChangeListener makeDisplayBoxChangeListenerOn(final Count count) {
+        return new DisplayBoxChangeListener(count);
     }
 
     private void add(Node node, ConstraintFrame constraintFrame) {

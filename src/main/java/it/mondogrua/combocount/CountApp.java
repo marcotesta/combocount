@@ -19,16 +19,26 @@ public class CountApp extends Application {
         Count count = new DateCount();
 
         createJavaFXCountViewContainer(primaryStage, count);
-
+        
+        Stage stage = new Stage();
+        createAltJavaFXCountViewContainer(stage, count);
+        
         createSwingCountViewContainer(count);
 
     }
 
-    private void createJavaFXCountViewContainer(Stage primaryStage, Count count) {
+    private void createJavaFXCountViewContainer(Stage stage, Count count) {
         it.mondogrua.combocount.javafx_count_view.CountViewContainer countViewContainer =
                 new it.mondogrua.combocount.javafx_count_view.CountViewContainer();
-        countViewContainer.openOn(count, "JavaFX DateCount Example", primaryStage);
-        primaryStage.show();
+        countViewContainer.openOn(count, "JavaFX DateCount Example", stage);
+        stage.show();
+    }
+
+    private void createAltJavaFXCountViewContainer(Stage stage, Count count) {
+        it.mondogrua.combocount.javafx_count_view.CountViewContainer countViewContainer =
+                new it.mondogrua.combocount.javafx_count_view.CountViewContainer();
+        countViewContainer.altOpenOn(count, "Alternative JavaFX DateCount Example", stage);
+        stage.show();
     }
 
     private void createSwingCountViewContainer(Count count) {
