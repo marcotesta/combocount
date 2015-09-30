@@ -26,7 +26,7 @@ public class CountViewContainer extends GridPane {
     }
     
     public void altOpenOn(final Count count, String title, Stage stage) {
-        buildViewsOn(count);
+    	altBuildViewsOn(count);
         Scene scene = new Scene(this, 300, 150);
         stage.setScene(scene);
         stage.setTitle(title);
@@ -40,7 +40,7 @@ public class CountViewContainer extends GridPane {
     }
 
     private void altBuildViewsOn(final Count count) {
-        addDisplayBoxOn(count);
+    	addDisplayBoxChangeListenerOn(count);
         addIncrementButtonOn(count);
         addDecrementButtonOn(count);
         addResetButtonOn(count);

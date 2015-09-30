@@ -19,12 +19,8 @@ public class CountApp extends Application {
         Count count = new DateCount();
 
         createJavaFXCountViewContainer(primaryStage, count);
-        
-        Stage stage = new Stage();
-        createAltJavaFXCountViewContainer(stage, count);
-        
-        createSwingCountViewContainer(count);
-
+        createAltJavaFXCountViewContainer(new Stage(), count);
+        createSwingCountViewContainer(new Stage(), count);
     }
 
     private void createJavaFXCountViewContainer(Stage stage, Count count) {
@@ -41,14 +37,13 @@ public class CountApp extends Application {
         stage.show();
     }
 
-    private void createSwingCountViewContainer(Count count) {
+    private void createSwingCountViewContainer(Stage stage, Count count) {
         final SwingNode swingNode = new SwingNode();
         createSwingContent(swingNode, count);
 
         StackPane pane = new StackPane();
         pane.getChildren().add(swingNode);
 
-        Stage stage = new Stage();
         stage.setScene(new Scene(pane, 350, 150));
         stage.setTitle("SWING DateCount Example");
 
