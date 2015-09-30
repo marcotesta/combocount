@@ -20,20 +20,18 @@ public class CountApp extends Application {
 
         Count count = new DateCount();
 
-        createJavaFXCountViewContainer(primaryStage, count);
-        createAltJavaFXCountViewContainer(new Stage(), count);
+        createJavaFXCountViewContainer(primaryStage, count, "JavaFX DateCount Example", new JFXCountViewContainer.JFXBuilder());
+        createJavaFXCountViewContainer(new Stage(), count, "Alternative JavaFX DateCount Example", new JFXCountViewContainer.AltJFXBuilder());
         createSwingCountViewContainer(new Stage(), count);
     }
 
-    private void createJavaFXCountViewContainer(Stage stage, Count count) {
+    private void createJavaFXCountViewContainer(Stage stage, Count count, String lable, JFXCountViewContainer.Builder builder) {
         JFXCountViewContainer countViewContainer = new JFXCountViewContainer();
-        countViewContainer.openOn(count, "JavaFX DateCount Example", stage);
-        stage.show();
-    }
+		countViewContainer.openOn(count, builder);
+        Scene scene = new Scene(countViewContainer, 300, 150);
+        stage.setScene(scene);
+        stage.setTitle(lable);
 
-    private void createAltJavaFXCountViewContainer(Stage stage, Count count) {
-        JFXCountViewContainer countViewContainer = new JFXCountViewContainer();
-        countViewContainer.altOpenOn(count, "Alternative JavaFX DateCount Example", stage);
         stage.show();
     }
 

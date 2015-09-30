@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -18,78 +19,73 @@ public class JFXCountViewContainer extends GridPane {
         setPadding(new Insets(25, 25, 25, 25));
     }
 
-    public void openOn(final Count count, String title, Stage stage) {
-        buildViewsOn(count);
-        Scene scene = new Scene(this, 300, 150);
-        stage.setScene(scene);
-        stage.setTitle(title);
+    public void openOn(final Count count, Builder builder) {
+        buildViewsOn(count, builder);
     }
     
-    public void altOpenOn(final Count count, String title, Stage stage) {
-    	altBuildViewsOn(count);
-        Scene scene = new Scene(this, 300, 150);
-        stage.setScene(scene);
-        stage.setTitle(title);
-    }
-    
-    private void buildViewsOn(final Count count) {
-        addDisplayBoxOn(count);
-        addIncrementButtonOn(count);
-        addDecrementButtonOn(count);
-        addResetButtonOn(count);
+
+	private void buildViewsOn(final Count count, Builder builder) {
+        addDisplayBoxOn(count,builder);
+        addIncrementButtonOn(count, builder);
+        addDecrementButtonOn(count, builder);
+        addResetButtonOn(count, builder);
     }
 
-    private void altBuildViewsOn(final Count count) {
-    	addAltDisplayBoxOn(count);
-        addIncrementButtonOn(count);
-        addDecrementButtonOn(count);
-        addResetButtonOn(count);
-    }
 
-    private void addDisplayBoxOn(final Count count) {
-    	JFXDisplayBox displayBox = makeDisplayBoxOn(count);
+    private void addDisplayBoxOn(final Count count, Builder builder) {
+    	Label displayBox = builder.makeDisplayBoxOn(count);
         ConstraintFrame constraintFrame = new ConstraintFrame(1, 1);
         add(displayBox, constraintFrame);
     }
 
-    private void addAltDisplayBoxOn(final Count count) {
-    	AltDisplayBox displayBox = makeAltDisplayBoxOn(count);
-        ConstraintFrame constraintFrame = new ConstraintFrame(1, 1);
-        add(displayBox, constraintFrame);
-    }
-
-    private void addResetButtonOn(final Count count) {
-        Button buttonReset = makeButtonOn(count, "Reset", "reset");
+    private void addResetButtonOn(final Count count, Builder builder) {
+        Button buttonReset = builder.makeButtonOn(count, "Reset", "reset");
         ConstraintFrame constraintFrame = new ConstraintFrame(2, 2);
         add(buttonReset, constraintFrame);
     }
 
-    private void addDecrementButtonOn(final Count count) {
-        Button buttonDecrement = makeButtonOn(count, "Decrement", "decrement");
+    private void addDecrementButtonOn(final Count count, Builder builder) {
+        Button buttonDecrement = builder.makeButtonOn(count, "Decrement", "decrement");
         ConstraintFrame constraintFrame = new ConstraintFrame(1, 2);
         add(buttonDecrement, constraintFrame);
     }
 
-    private void addIncrementButtonOn(final Count count) {
-        Button buttonIncrement = makeButtonOn(count, "Increment", "increment");
+    private void addIncrementButtonOn(final Count count, Builder builder) {
+        Button buttonIncrement = builder.makeButtonOn(count, "Increment", "increment");
         ConstraintFrame constraintFrame = new ConstraintFrame(0, 2);
         add(buttonIncrement, constraintFrame);
     }
 
-    private Button makeButtonOn(final Count count, String label, String action) {
-        return new Button(label, new PluggableAdaptor(count , action, new Object[]{}));
-    }
 
-    private JFXDisplayBox makeDisplayBoxOn(final Count count) {
-        return new JFXDisplayBox(count);
-    }
-
-    private AltDisplayBox makeAltDisplayBoxOn(final Count count) {
-        return new AltDisplayBox(count);
-    }
 
     private void add(Node node, ConstraintFrame constraintFrame) {
         add(node, constraintFrame.getX(), constraintFrame.getY());
     }
+    
+    public interface Builder {
+        public Button makeButtonOn(final Count count, String label, String action); 
+        public Label makeDisplayBoxOn(final Count count) ;
+    }
+    
+    static public class JFXBuilder implements Builder {
+    	
+        public Button makeButtonOn(final Count count, String label, String action) {
+            return new Button(label, new PluggableAdaptor(count , action, new Object[]{}));
+        }
 
+        public Label makeDisplayBoxOn(final Count count) {
+            return new JFXDisplayBox(count);
+        }
+    }
+
+    static public class AltJFXBuilder implements Builder {
+    	
+        public Button makeButtonOn(final Count count, String label, String action) {
+            return new Button(label, new PluggableAdaptor(count , action, new Object[]{}));
+        }
+
+        public Label makeDisplayBoxOn(final Count count) {
+            return new AltDisplayBox(count);
+        }
+    }
 }
