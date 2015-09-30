@@ -40,7 +40,7 @@ public class JFXCountViewContainer extends GridPane {
     }
 
     private void altBuildViewsOn(final Count count) {
-    	addDisplayBoxChangeListenerOn(count);
+    	addAltDisplayBoxOn(count);
         addIncrementButtonOn(count);
         addDecrementButtonOn(count);
         addResetButtonOn(count);
@@ -52,8 +52,8 @@ public class JFXCountViewContainer extends GridPane {
         add(displayBox, constraintFrame);
     }
 
-    private void addDisplayBoxChangeListenerOn(final Count count) {
-    	AltDisplayBox displayBox = makeDisplayBoxChangeListenerOn(count);
+    private void addAltDisplayBoxOn(final Count count) {
+    	AltDisplayBox displayBox = makeAltDisplayBoxOn(count);
         ConstraintFrame constraintFrame = new ConstraintFrame(1, 1);
         add(displayBox, constraintFrame);
     }
@@ -84,7 +84,7 @@ public class JFXCountViewContainer extends GridPane {
         return new JFXDisplayBox(count);
     }
 
-    private AltDisplayBox makeDisplayBoxChangeListenerOn(final Count count) {
+    private AltDisplayBox makeAltDisplayBoxOn(final Count count) {
         return new AltDisplayBox(count);
     }
 
