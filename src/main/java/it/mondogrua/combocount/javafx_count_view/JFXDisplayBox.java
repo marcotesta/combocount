@@ -6,11 +6,11 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Label;
 
-public class DisplayBox extends Label  {
+public class JFXDisplayBox extends Label  {
 
     private final SimpleStringProperty observer;
 
-    public DisplayBox(ComboObservable count) {
+    public JFXDisplayBox(ComboObservable count) {
         this.observer = new SimpleStringProperty();
         textProperty().bind(Bindings.convert(observer));
         count.addObserver(observer);

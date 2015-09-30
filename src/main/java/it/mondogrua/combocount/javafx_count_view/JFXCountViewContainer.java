@@ -9,9 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class CountViewContainer extends GridPane {
+public class JFXCountViewContainer extends GridPane {
 
-    public CountViewContainer() {
+    public JFXCountViewContainer() {
         setAlignment(Pos.CENTER);
         setHgap(10);
         setVgap(10);
@@ -47,7 +47,7 @@ public class CountViewContainer extends GridPane {
     }
 
     private void addDisplayBoxOn(final Count count) {
-    	DisplayBox displayBox = makeDisplayBoxOn(count);
+    	JFXDisplayBox displayBox = makeDisplayBoxOn(count);
         ConstraintFrame constraintFrame = new ConstraintFrame(1, 1);
         add(displayBox, constraintFrame);
     }
@@ -80,8 +80,8 @@ public class CountViewContainer extends GridPane {
         return new Button(label, new PluggableAdaptor(count , action, new Object[]{}));
     }
 
-    private DisplayBox makeDisplayBoxOn(final Count count) {
-        return new DisplayBox(count);
+    private JFXDisplayBox makeDisplayBoxOn(final Count count) {
+        return new JFXDisplayBox(count);
     }
 
     private DisplayBoxChangeListener makeDisplayBoxChangeListenerOn(final Count count) {
