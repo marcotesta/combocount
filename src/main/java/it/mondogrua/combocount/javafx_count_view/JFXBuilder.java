@@ -59,7 +59,7 @@ public class JFXBuilder implements Builder {
     }
 
     protected Label makeDisplayBoxOn(final Count count) {
-        return new JFXDisplayBox(count);
+        return new JFXDisplayBox(count.asSimpleStringProperty());
     }
 
 	private void add(Node node, int x, int y) {
