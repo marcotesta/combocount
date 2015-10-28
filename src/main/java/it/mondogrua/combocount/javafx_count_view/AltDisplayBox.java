@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 
 public class AltDisplayBox extends Label {
 	
-    private final ChangeListener<?> observer;
+    private final ChangeListener<? super String> observer;
 
     public AltDisplayBox(ComboObservable count) {
     	observer = new ChangeListener<Object>() {
