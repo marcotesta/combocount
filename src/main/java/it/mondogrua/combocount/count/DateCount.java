@@ -14,7 +14,6 @@ public class DateCount extends Count {
         super.initialize();
     };
 
-
     @Override
     public void increment() {
         setValue(((Date)getValue()).addDays(1));

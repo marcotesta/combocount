@@ -1,6 +1,8 @@
 package it.mondogrua.combocount.count;
 
-public abstract class Count {
+import it.mondogrua.valuemodel.ValueModel;
+
+public abstract class Count extends ValueModel {
 
     private Object _value;
     private Object _resetValue;
@@ -13,10 +15,12 @@ public abstract class Count {
         reset();
     }
 
+    @Override
     public Object getValue() {
         return _value;
     }
 
+    @Override
     public void setValue(Object aValue) {
         _value = aValue;
     }
