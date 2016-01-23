@@ -1,9 +1,6 @@
 package it.mondogrua.combocount.count;
 
-import it.mondogrua.utils.ComboObservable;
-
-
-public abstract class Count extends ComboObservable {
+public abstract class Count {
 
     private Object _value;
     private Object _resetValue;
@@ -16,14 +13,12 @@ public abstract class Count extends ComboObservable {
         reset();
     }
 
-    @Override
     public Object getValue() {
         return _value;
     }
 
     public void setValue(Object aValue) {
         _value = aValue;
-        changed("getValue");
     }
 
     public Object getResetValue() {

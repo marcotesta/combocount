@@ -73,7 +73,7 @@ public class SwingBuilder implements Builder {
     }
 
     private DisplayBox makeDisplayBoxOn(final Count count, String action) {
-        return new DisplayBox(count.asJavaUtilObservable(), action);
+        return new DisplayBox(count, action);
     }
 
     private GridBagConstraints makeConstraintFrame(int x, int y) {
