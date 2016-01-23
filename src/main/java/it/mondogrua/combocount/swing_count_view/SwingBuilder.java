@@ -11,8 +11,8 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import it.mondogrua.combocount.Builder;
-import it.mondogrua.combocount.count.Count;
 import it.mondogrua.utils.PluggableAdaptor;
+import it.mondogrua.valuemodel.ValueModel;
 import javafx.embed.swing.SwingNode;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -28,23 +28,23 @@ public class SwingBuilder implements Builder {
 	}
     
     @Override
-    public void addDisplayBoxOn(final Count count, int x, int y) {
-        add(makeDisplayBoxOn(count, "getValue"), x, y);
+    public void addDisplayBoxOn(final ValueModel valueModel, int x, int y) {
+        add(makeDisplayBoxOn(valueModel, "getValue"), x, y);
     }
 
     @Override
-	public void addResetButtonOn(final Count count, int x, int y) {
-        add(makeButtonOn(count, "Reset", "reset"), x, y);
+	public void addResetButtonOn(final ValueModel valueModel, int x, int y) {
+        add(makeButtonOn(valueModel, "Reset", "reset"), x, y);
     }
 
     @Override
-    public void addDecrementButtonOn(final Count count, int x, int y) {
-        add(makeButtonOn(count, "Decrement", "decrement"), x, y);
+    public void addDecrementButtonOn(final ValueModel valueModel, int x, int y) {
+        add(makeButtonOn(valueModel, "Decrement", "decrement"), x, y);
     }
 
     @Override
-    public void addIncrementButtonOn(final Count count, int x, int y) {
-        add(makeButtonOn(count, "Increment", "increment"), x, y);
+    public void addIncrementButtonOn(final ValueModel valueModel, int x, int y) {
+        add(makeButtonOn(valueModel, "Increment", "increment"), x, y);
     }
     
 	@Override
@@ -59,21 +59,21 @@ public class SwingBuilder implements Builder {
         return new Scene(pane, x, y);
 	}
 
-    private JButton makeButtonOn(final Count count, String label, String action) {
+    private JButton makeButtonOn(final ValueModel valueModel, String label, String action) {
         JButton button = new JButton(label);
         button.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                new PluggableAdaptor(count , action, new Object[]{}).execute();
+                new PluggableAdaptor(valueModel , action, new Object[]{}).execute();
             }
         });
 
         return button;
     }
 
-    private DisplayBox makeDisplayBoxOn(final Count count, String action) {
-        return new DisplayBox(count, action);
+    private DisplayBox makeDisplayBoxOn(final ValueModel valueModel, String action) {
+        return new DisplayBox(valueModel, action);
     }
 
     private GridBagConstraints makeConstraintFrame(int x, int y) {

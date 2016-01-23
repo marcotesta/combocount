@@ -7,14 +7,14 @@ import java.util.Observable;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
-import it.mondogrua.combocount.count.Count;
+import it.mondogrua.valuemodel.ValueModel;
 
 @SuppressWarnings("serial")
 public class DisplayBox extends JLabel implements java.util.Observer {
 
-    public DisplayBox(Count count, String action) {
-        count.addObserver(this);
-        update(count.asJavaUtilObservable(), action);
+    public DisplayBox(ValueModel valueModel, String action) {
+        valueModel.addObserver(this);
+        update(valueModel.asJavaUtilObservable(), action);
     }
 
     @Override  // java.util.Observer
