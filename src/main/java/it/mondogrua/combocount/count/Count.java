@@ -2,7 +2,7 @@ package it.mondogrua.combocount.count;
 
 import it.mondogrua.valuemodel.ValueModel;
 
-public abstract class Count extends ValueModel {
+public abstract class Count implements ValueModel {
 
     private Object _value;
     private Object _resetValue;
